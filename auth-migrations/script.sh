@@ -1,0 +1,1 @@
+sudo npx sequelize-cli db:migrate
