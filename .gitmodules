@@ -4,3 +4,6 @@
 [submodule "backend"]
 	path = backend
 	url = git@github.com:Sukhacoder02/backend.git
+[submodule "react-app-in-docker-container"]
+	path = react-app-in-docker-container
+	url = git@github.com:Sukhacoder02/react-app-in-docker-container.git
