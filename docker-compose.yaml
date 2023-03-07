@@ -1,0 +1,59 @@
+version: '4.0'
+services:
+  web:
+    build: ./AuthService
+    restart: always
+    ports:
+      - '3000:3000'
+
+  todo:
+    build: ./backend
+    restart: always
+    ports:
+      - '8000:8000'
+
+  dbauth:
+    image: postgres:latest
+    restart: always
+    ports:
+      - '5435:5432'
+    environment:
+      - POSTGRES_PASSWORD=example
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./postgres-data:/data/var/lib/postgresql/data
+
+  dbtodo:
+    image: postgres:latest
+    restart: always
+    ports:
+      - '5436:5432'
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+
+  migration1:
+    build: ./auth-migrations
+    depends_on:
+      - dbauth
+
+  migration2:
+    build: ./todo-migrations
+    depends_on:
+      - dbtodo
+  # dbtodo:
+  #   image: postgres:latest
+  #   restart: always
+  #   ports:
+  #     - '5436:5432'
+  #   environment:
+  #     - POSTGRES_PASSWORD=password
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_USER=postgres

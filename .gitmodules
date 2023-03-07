@@ -1,0 +1,6 @@
+[submodule "AuthService"]
+	path = AuthService
+	url = git@github.com:Sukhacoder02/AuthService.git
+[submodule "backend"]
+	path = backend
+	url = git@github.com:Sukhacoder02/backend.git
