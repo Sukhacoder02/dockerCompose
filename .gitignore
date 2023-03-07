@@ -3,3 +3,4 @@ auth-migrations/node_modules
 todo-migrations/node_modules
 backend/node_modules
 AuthService/node_modules
+react-app-in-docker-container/node_modules
